@@ -1,4 +1,5 @@
-# Hash table that utilizes linear probing to resolve collisions
+# Hash table implementation that utilizes linear probing to resolve collisions
+
 
 # Class for representing an empty bucket
 class EmptyBucket:
