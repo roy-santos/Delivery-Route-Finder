@@ -1,53 +1,52 @@
 # Roy Santos, StudentID: 001186453
+import route_simulator
+from models.truck import Truck
+from utilities.data_loader import hash_loader, graph_loader
 
-import csv
-from models.package import *
-from data_structures.hash import *
-from data_structures.graph import *
-
-
-# Create a hash table to store packages. Amount of packages to deliver is known to be 40.
-package_hash_table = HashTable(40)
-
-# Fill hash table with package data from CSV file
-with open('WGUPS_Package_File.csv', encoding='utf-8=sig') as package_csv_file:
-    csv_reader = csv.reader(package_csv_file, delimiter=',')
-    for row in csv_reader:
-        package = Package(row[0], row[1], row[2], row[3], row[4], row[5], row[6], row[7])
-        package_hash_table.insert(package)
-
-for index in range(0,41):
-    print(package_hash_table.search(index))
+# Initialize hash table and graph with data from CSV files
+hash_table = hash_loader('WGUPS_Package_File.csv', 40)
+adjacency_list_graph = graph_loader('WGUPS_Distance_Table.csv')
 
 
+def user_int_prompt():
+    try:
+        return int(input("Select from the following:\n"
+                         "1 - Look up Package ID\n"
+                         "2 - Print All Packages\n"
+                         "3 - Set start time\n"
+                         "4 - End program\n\n"
+                         "Enter Command: "))
+    except ValueError:
+        pass
+
+
+truck1 = Truck()
+truck1.load_truck(hash_table)
+truck1.print_load()
 print()
-# Create graph structure to hold locations(vertices) and distances (edges)
-adjacency_list = Graph()
+truck2 = Truck()
+truck2.load_truck(hash_table)
+truck2.print_load()
 
-with open('WGUPS_Distance_Table.csv', encoding='utf-8=sig') as distance_csv_file:
-    csv_reader = csv.reader(distance_csv_file, delimiter=',')
+# route_simulator.run_simulation(adjacency_list_graph)
 
-    # Add all vertices to the graph
-    for count, row in enumerate(csv_reader, 0):
-        if count > 0:
-            adjacency_list.add_vertex(Vertex(row[0], row[1]))
-
-with open('WGUPS_Distance_Table.csv', encoding='utf-8=sig') as distance_csv_file:
-    csv_reader = csv.reader(distance_csv_file, delimiter=',')
-
-    location = []
-    # Add all edges to the graph
-    for count, row in enumerate(csv_reader, 0):
-        column = 2
-        if count == 0:
-            while column < len(row):
-                location.append(row[column])
-                column += 1
-        else:
-            while column < len(row) and row[column] != '0':
-                adjacency_list.add_edge(row[0], location[column - 2], float(row[column]))
-                column += 1
-        column += 1
-
-adjacency_list.print_graph()
-
+# User interface.
+while True:
+    user_int = user_int_prompt()
+    print()
+    if user_int == 1:
+        package_id = int(input('Enter package ID: '))
+        print(hash_table.search(package_id))
+        print()
+    elif user_int == 2:
+        hash_table.print_table()
+        print()
+    elif user_int == 3:
+        time_set = input('Enter start time (HH:MM): ')
+        print()
+    elif user_int == 4:
+        print('Goodbye!')
+        break
+    else:
+        print('Invalid command!')
+        print()

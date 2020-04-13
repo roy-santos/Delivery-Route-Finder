@@ -8,19 +8,23 @@ class EmptyBucket:
 
 class HashTable:
 
+    # Initialize hash table with the provided size and each bucket with an empty since start type.
     def __init__(self, capacity=10):
-
         # Constants to be used to represent the two types of empty buckets
         self.EMPTY_SINCE_START = EmptyBucket()
         self.EMPTY_AFTER_REMOVAL = EmptyBucket()
 
         self.array = [self.EMPTY_SINCE_START] * capacity
 
+    def __iter__(self):
+        return iter(self.array)
+
+    # Hash function that hash table uses to determine which bucket the provided key is in.
     def hash(self, key):
         capacity = len(self.array)
         return key % capacity
 
-    # Runtime complexity: Average case O(1), Worst case O(N)
+    # Insert function that adds package to the hash table.Runtime complexity: Average case O(1), Worst case O(N)
     def insert(self, value):
         bucket = self.hash(value.package_id)
         buckets_probed = 0
@@ -35,7 +39,7 @@ class HashTable:
 
         return False
 
-    # Runtime complexity: Average case O(1), Worst case O(N)
+    # Delete function removes the package with the matching key. Runtime complexity: Average case O(1), Worst case O(N)
     def remove(self, key):
         bucket = self.hash(key)
         buckets_probed = 0
@@ -47,7 +51,7 @@ class HashTable:
             bucket = (bucket + 1) % len(self.array)
             buckets_probed += 1
 
-    # Runtime complexity: Average case O(1), Worst case O(N)
+    # Look-up function that returns a package object. Runtime complexity: Average case O(1), Worst case O(N)
     def search(self, key):
         bucket = self.hash(key)
         buckets_probed = 0
@@ -60,5 +64,11 @@ class HashTable:
             buckets_probed += 1
 
         return None
+
+    # Function that prints all off the packages held in the hash table. O(N) runtime complexity.
+    def print_table(self):
+        for item in self.array:
+            #if type(item) is not EmptyBucket:
+                print(item)
 
 
