@@ -6,3 +6,4 @@ def run_simulation(graph, *truck):
         graph.vertices
 
     print(unvisited_queue)
+3

@@ -50,7 +50,7 @@ def graph_loader(filename):
                     column += 1
             else:
                 while column < len(row) and row[column] != '0':
-                    graph.add_edge(row[0], location[column - 2], float(row[column]))
+                    graph.add_edge(row[0], location[column - 2], float(row[column + 1]))
                     column += 1
             column += 1
     return graph

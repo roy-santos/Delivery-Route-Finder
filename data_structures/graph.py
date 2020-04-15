@@ -40,7 +40,7 @@ class Graph:
 
     # Function that adds weighted edges by adding a neighbor to both vertices provided. O(1) runtime complexity.
     def add_edge(self, vertex1, vertex2, distance):
-        if vertex1 in self.vertices and vertex2 in self.vertices:
+        if vertex1 in self.vertices and vertex2 in self.vertices and distance != 0:
             self.vertices[vertex1].add_neighbor(vertex2, distance)
             self.vertices[vertex2].add_neighbor(vertex1, distance)
             return True
