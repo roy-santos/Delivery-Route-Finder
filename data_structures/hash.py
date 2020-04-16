@@ -67,6 +67,7 @@ class HashTable:
 
     # Function that prints all off the packages held in the hash table. O(N) runtime complexity.
     def print_table(self):
+        self.array.sort(key=lambda x: x.package_id)
         for item in self.array:
             #if type(item) is not EmptyBucket:
                 print(item)

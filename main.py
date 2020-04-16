@@ -1,31 +1,15 @@
 # Roy Santos, StudentID: 001186453
-from datetime import datetime
+from datetime import datetime, date, time
 
 import route_simulator
-from models.truck import Truck
 from utilities.data_loader import hash_loader, graph_loader
 
 # Initialize hash table and graph with data from CSV files
 hash_table = hash_loader('WGUPS_Package_File.csv', 40)
 adjacency_list_graph = graph_loader('WGUPS_Distance_Table.csv')
 
-# Load trucks with packages
-truck1 = Truck()
-truck1.load_truck(hash_table)
-print()
-truck2 = Truck()
-truck2.load_truck(hash_table)
-print()
-
-
-# ALGO TESTING - DELETE LATER
-#truck1.run_route(adjacency_list_graph)
-#truck1.load_truck(hash_table)
-#truck1.run_route(adjacency_list_graph)  #--- Does not work
-truck2.run_route(adjacency_list_graph)
-print(truck1.location, truck2.location)
-print(truck1.distance_traveled, truck2.distance_traveled)
-hash_table.print_table()
+# Initialize start time for the day
+set_time = datetime.combine(date.today(), time(8))
 
 
 # User interface.
@@ -41,23 +25,23 @@ def user_int_prompt():
         pass
 
 
-time_set = datetime.strptime('8:00AM', '%I:%M%p').time()
-
 while True:
     print()
-    print('Current simulation time:',time_set)
+    print('Current simulation time:', set_time)
     user_int = user_int_prompt()
     print()
     if user_int == 1:
         package_id = int(input('Enter package ID: '))
-        print(hash_table.search(package_id))
+        print(route_simulator.run_simulation(set_time)[1].search(package_id))
         print()
     elif user_int == 2:
-        hash_table.print_table()
+        route_simulator.run_simulation(set_time)[1].print_table()
         print()
     elif user_int == 3:
-        time_set = datetime.strptime(input('Enter start time (HH:MM): '), '%H:%M').time()
-        print()
+        time_prompt = input('Enter start time (HH:MM): ')
+        hours, minutes = map(int, time_prompt.split(':'))
+        user_time = datetime.combine(date.today(), time(hours, minutes))
+        set_time = route_simulator.run_simulation(user_time)[0]
     elif user_int == 4:
         print('Goodbye!')
         break
