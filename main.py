@@ -4,10 +4,6 @@ from datetime import datetime, date, time
 import route_simulator
 from utilities.data_loader import hash_loader, graph_loader
 
-# Initialize hash table and graph with data from CSV files
-hash_table = hash_loader('WGUPS_Package_File.csv', 40)
-adjacency_list_graph = graph_loader('WGUPS_Distance_Table.csv')
-
 # Initialize start time for the day
 set_time = datetime.combine(date.today(), time(8))
 
@@ -16,15 +12,16 @@ set_time = datetime.combine(date.today(), time(8))
 def user_int_prompt():
     try:
         return int(input("Select from the following:\n"
-                         "1 - Look up Package ID\n"
-                         "2 - Print All Packages\n"
-                         "3 - Set start time\n"
+                         "1 - Look up package ID\n"
+                         "2 - Print all packages\n"
+                         "3 - Set simulation time\n"
                          "4 - End program\n\n"
                          "Enter Command: "))
     except ValueError:
         pass
 
 
+# Command line interface for interacting with the program. While loop with an runtime complexity of O(1).
 while True:
     print()
     print('Current simulation time:', set_time)

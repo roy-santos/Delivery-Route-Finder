@@ -16,6 +16,7 @@ class HashTable:
 
         self.array = [self.EMPTY_SINCE_START] * capacity
 
+    # Function that defines how to iterate through the class.
     def __iter__(self):
         return iter(self.array)
 
@@ -24,7 +25,7 @@ class HashTable:
         capacity = len(self.array)
         return key % capacity
 
-    # Insert function that adds package to the hash table.Runtime complexity: Average case O(1), Worst case O(N)
+    # Insert function that adds package to the hash table. Runtime complexity: Average case O(1), Worst case O(N)
     def insert(self, value):
         bucket = self.hash(value.package_id)
         buckets_probed = 0

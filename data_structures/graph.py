@@ -1,11 +1,8 @@
-# Adjacency list graph representation
-
-
-# Vertex class to represent locations and their adjacent locations
+# Graph data structure class that utilizes adjacency lists.
 import operator
 
 
-# Vertex class used to represent locations on the map.
+# Vertex class used to represent locations on the map. Holds a list of neighboring locations.
 class Vertex:
     # Initialize vertex with the name, address, and adjacent vertices.
     def __init__(self, name, address, location_zip):
@@ -14,7 +11,7 @@ class Vertex:
         self.location_zip = location_zip
         self.neighbors = []
 
-    # Function that adds adjacent vertices and the distance to the vertex as a tuple. O(N) runtime complexity.
+    # Function that adds adjacent vertices and the distance to that vertex as a tuple.
     def add_neighbor(self, neighbor, distance):
         if neighbor not in self.neighbors:
             self.neighbors.append((neighbor, distance))
@@ -27,6 +24,7 @@ class Graph:
     # Dictionary data structure holds vertices.
     vertices = {}
 
+    # Function that tells the program how to iterate through the graph class.
     def __iter__(self):
         return iter(self.vertices)
 

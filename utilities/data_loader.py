@@ -6,7 +6,7 @@ from data_structures.hash import HashTable
 from models.package import Package
 
 
-# Function that returns a hash table to store package information.
+# Function that returns a hash table to store package information. Runtime complexity of O(N).
 def hash_loader(filename, table_size=40):
 
     # Create hash table
@@ -23,7 +23,7 @@ def hash_loader(filename, table_size=40):
 
 
 # Function that returns a graph data structure for holding locations (vertices) and distances (edges) to adjacent
-# locations.
+# locations. Runtime complexity of O(N).
 def graph_loader(filename):
 
     # Create graph

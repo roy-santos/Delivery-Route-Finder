@@ -25,14 +25,18 @@ class Package:
         self.delivery_status = delivery_status
         self.delivery_time = delivery_time
 
+    # Function that defines how the package class is hashed.
     def __hash__(self):
         return self.package_id
 
+    # Function that defines how packages are determined to be equal.
     def __eq__(self, other):
         return self.package_id == other
 
-    # Override for an object's default print implementation.
+    # Function that overrides an object's default print implementation.
     def __str__(self):
-        return "%s, %s, %s, %s, %s, %s, %s, %s, %s" % (
-            self.package_id, self.package_address, self.package_city, self.package_state, self.package_zip,
-            self.mass_in_kilos, self.special_notes, self.delivery_status, self.delivery_time)
+        return "Package ID: %s; Address: %s, %s, %s, %s; Deadline: %s; Mass: %s; Special Notes: %s; Delivery Status: " \
+               "%s, %s" % (
+                   self.package_id, self.package_address, self.package_city, self.package_state, self.package_zip,
+                   self.delivery_deadline, self.mass_in_kilos, self.special_notes, self.delivery_status,
+                   self.delivery_time)
