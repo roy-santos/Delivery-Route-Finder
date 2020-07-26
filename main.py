@@ -20,7 +20,6 @@ def user_int_prompt():
     except ValueError:
         pass
 
-
 # Command line interface for interacting with the program. While loop with an runtime complexity of O(1).
 while True:
     print()
@@ -45,3 +44,4 @@ while True:
     else:
         print('Invalid command!')
         print()
+
