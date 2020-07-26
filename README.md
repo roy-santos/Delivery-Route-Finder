@@ -14,3 +14,9 @@ packages to their intended destination while adhering to delivery constraints.
 * Implemented custom hash table and graph data structures. Does not use the 
 standard library's dictionary function.
 * Package and distance table CSV files are included in the utilities folder.
+
+### Project Takeaways
+**Divide and Conquer**: Breaking down complex problems into smaller more managable parts and tackling
+the smaller problems one by one. <br><br>
+**Complexity Management**: Utilize OOP techniques to create clear problem abstractions that keep code clean and well 
+organized.
