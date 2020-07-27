@@ -20,3 +20,13 @@ standard library's dictionary function.
 the smaller problems one by one. <br><br>
 **Complexity Management**: Utilize OOP techniques to create clear problem abstractions that keep code clean and well 
 organized.
+
+### Images
+**Main Screen of Application**:<br>
+<img src="Images/DRFmain.png" width=300 align=center>
+<br><br>
+**Setting the simulation time**:<br>
+<img src="Images/DRFset_time.png" width=300 align=center>
+<br><br>
+**Displaying package statuses**:<br>
+<img src="Images/DRFprint_packages.png" width=300 align=center>
